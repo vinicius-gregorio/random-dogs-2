@@ -1,0 +1,3 @@
+[submodule "random-dogs"]
+	path = random-dogs
+	url = https://github.com/vinicius-gregorio/random-dogs.git
