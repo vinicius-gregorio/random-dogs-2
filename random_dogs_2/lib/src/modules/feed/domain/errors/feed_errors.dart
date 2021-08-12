@@ -1,5 +1,8 @@
-class FeedErrors implements Exception {
+class FeedError implements Exception {
   final String message;
 
-  FeedErrors({required this.message});
+  FeedError({required this.message});
+
+  @override
+  String toString() => 'FeedError(message: $message)';
 }

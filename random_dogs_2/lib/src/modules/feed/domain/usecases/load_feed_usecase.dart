@@ -11,14 +11,15 @@ class LoadFeedUsecase implements ILoadFeedUsecase {
 
   LoadFeedUsecase(this.repository);
   @override
-  Future<DogResponse> call(LoadFeedParams params) {
+  Future<DogResponse> call(LoadFeedParams params) async {
     if (params.numberOfPhotos > 50) {
-      throw FeedErrors(message: 'Max number of photos is 50');
+      throw FeedError(message: 'Maximum number of photos is 50');
     }
     if (params.numberOfPhotos <= 0) {
-      throw FeedErrors(message: 'Min number of photos is 1');
+      throw FeedError(message: 'Minimum number of photos is 1');
     }
-    return repository.getFeed();
+
+    return repository.getFeed(params);
   }
 }
 
