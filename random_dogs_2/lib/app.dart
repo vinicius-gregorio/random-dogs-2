@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:random_dogs_2/src/modules/feed/ui/feed_page.dart';
+import 'package:random_dogs_2/src/modules/feed/feed_page.dart';
 import 'package:random_dogs_2/src/theme/app_theme.dart';
 
 class App extends StatelessWidget {
