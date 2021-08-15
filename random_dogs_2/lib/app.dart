@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:random_dogs_2/src/modules/feed/feed_page.dart';
+import 'package:random_dogs_2/src/modules/home/home_page.dart';
 import 'package:random_dogs_2/src/theme/app_theme.dart';
 
 class App extends StatelessWidget {
@@ -9,7 +9,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Random Dogs 2',
       theme: appTheme(),
-      home: FeedPage(),
+      home: HomePage(),
     );
   }
 }
