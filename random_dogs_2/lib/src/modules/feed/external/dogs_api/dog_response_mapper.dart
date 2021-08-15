@@ -5,4 +5,11 @@ class DogResponseMapper {
     return DogResponse(
         photo: List<String>.from(json['message']), status: json['status']);
   }
+
+  static DogResponse fromMap(Map<String, dynamic> map) {
+    return DogResponse(
+      photo: List<String>.from(map['message']),
+      status: map['status'],
+    );
+  }
 }

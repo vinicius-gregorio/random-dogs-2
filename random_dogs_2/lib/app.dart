@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:random_dogs_2/src/modules/feed/ui/feed_page.dart';
 
 class App extends StatelessWidget {
   @override
@@ -9,7 +10,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Container(),
+      home: FeedPage(),
     );
   }
 }
