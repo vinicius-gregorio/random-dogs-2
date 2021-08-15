@@ -13,4 +13,12 @@ void main() {
 
     expect(response.isRight(), true);
   });
+
+  test('should return the same number of photos as expected', () async {
+    final loadfeedUsecase = LoadFeedUsecase(FeedRepositoryImpl(DogsApiImpl()));
+    final params = LoadFeedParams(numberOfPhotos: 5);
+    var response = await loadfeedUsecase.repository.getFeed(params);
+    var numberOfPhotos = response.fold((l) => null, (r) => r.photo?.length);
+    expect(numberOfPhotos, params.numberOfPhotos);
+  });
 }

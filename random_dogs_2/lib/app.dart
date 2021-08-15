@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:random_dogs_2/src/modules/feed/ui/feed_page.dart';
+import 'package:random_dogs_2/src/theme/app_theme.dart';
 
 class App extends StatelessWidget {
   @override
@@ -7,9 +8,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Random Dogs 2',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: appTheme(),
       home: FeedPage(),
     );
   }
