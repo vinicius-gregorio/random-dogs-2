@@ -10,11 +10,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
+
+  #CORE
   cupertino_icons: ^1.0.2
   string_validator: ^0.3.0
   dartz: ^0.10.0-nullsafety.2
+
+  #REQUESTS
   dio: ^4.0.0
+
+  #UI
+  scrollable_positioned_list: ^0.2.0-nullsafety.0
 
 dev_dependencies:
   flutter_test:
