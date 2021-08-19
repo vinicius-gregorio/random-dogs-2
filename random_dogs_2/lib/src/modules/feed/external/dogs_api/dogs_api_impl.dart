@@ -15,7 +15,6 @@ class DogsApiImpl implements FeedDatasource {
     var response = await httpController.repository
         .fetch('$dogBaseUrl/breeds/image/random/${params.numberOfPhotos}');
     var mapped = DogResponseMapper.fromJson(response);
-    print(mapped.photo);
     return mapped;
   }
 }
