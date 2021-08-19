@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:random_dogs_2/src/modules/feed/domain/entities/dog_response.dart';
 import 'package:random_dogs_2/src/modules/feed/domain/usecases/load_feed_usecase.dart';
 import 'package:random_dogs_2/src/modules/feed/feed_controller.dart';
+import 'package:random_dogs_2/src/modules/feed/ui/components/feed_item_component.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
@@ -11,15 +12,14 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
-  List<String>? dogsPhotosList;
-  // @override
-  // void initState() async {
-  //   dogsPhotosList =
-  //       await controller.getPhotos(LoadFeedParams(numberOfPhotos: 50));
-  //   super.initState();
-  // }
-
+  ScrollController _scrollController = ScrollController();
   final controller = FeedController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -31,6 +31,7 @@ class _FeedPageState extends State<FeedPage> {
               if (snapshot.connectionState == ConnectionState.done) {
                 final dogPhotos = snapshot.data!.photo!;
                 return ListView.builder(
+                    shrinkWrap: true,
                     itemCount: snapshot.data?.photo?.length,
                     itemBuilder: (__, index) {
                       return Container(
@@ -43,22 +44,5 @@ class _FeedPageState extends State<FeedPage> {
             }),
       );
     });
-  }
-}
-
-class FeedItem extends StatelessWidget {
-  final String photo;
-  const FeedItem({
-    Key? key,
-    required this.photo,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: Image.network(
-      photo,
-      fit: BoxFit.cover,
-    ));
   }
 }
