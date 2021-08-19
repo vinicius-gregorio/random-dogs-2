@@ -36,6 +36,7 @@ class _FeedPageState extends State<FeedPage> {
                 final dogPhotos = snapshot.data!.photo!;
                 return ScrollablePositionedList.builder(
                     itemScrollController: _itemScrollController,
+                    physics: NeverScrollableScrollPhysics(),
                     itemPositionsListener: _itemPositionsListener,
                     itemCount: snapshot.data!.photo!.length,
                     itemBuilder: (__, index) {
