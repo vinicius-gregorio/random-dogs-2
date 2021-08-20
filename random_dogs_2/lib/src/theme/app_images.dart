@@ -1,3 +1,3 @@
 class AppImages {
-  static final guyImage = 'assets/images/unnamed.png';
+  static final placeholder = 'assets/images/placeholder.png';
 }

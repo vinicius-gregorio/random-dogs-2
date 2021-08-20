@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:random_dogs_2/src/modules/feed/domain/entities/dog_response.dart';
 import 'package:random_dogs_2/src/modules/feed/domain/usecases/load_feed_usecase.dart';
 import 'package:random_dogs_2/src/modules/feed/feed_controller.dart';
 import 'package:random_dogs_2/src/modules/feed/ui/components/feed_item_component.dart';
+import 'package:random_dogs_2/src/theme/app_animations.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class FeedPage extends StatefulWidget {
@@ -61,9 +63,11 @@ class _FeedPageState extends State<FeedPage> {
                                   onTap: () {
                                     controller.scrollToNext(index: index);
                                   },
-                                  child: Icon(
-                                    Icons.arrow_downward,
-                                    size: 50,
+                                  child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    child: Lottie.network(
+                                        LottieAnimations.arrowDownPump),
                                   ),
                                 )),
                           ],
