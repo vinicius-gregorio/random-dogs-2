@@ -13,10 +13,6 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
-  final ItemScrollController _itemScrollController = ItemScrollController();
-  final ItemPositionsListener _itemPositionsListener =
-      ItemPositionsListener.create();
-
   final controller = FeedController();
 
   @override
@@ -35,32 +31,43 @@ class _FeedPageState extends State<FeedPage> {
               if (snapshot.connectionState == ConnectionState.done) {
                 final dogPhotos = snapshot.data!.photo!;
                 return ScrollablePositionedList.builder(
-                    itemScrollController: _itemScrollController,
+                    itemScrollController: controller.itemScrollController,
                     physics: NeverScrollableScrollPhysics(),
-                    itemPositionsListener: _itemPositionsListener,
+                    itemPositionsListener: controller.itemPositionsListener,
                     itemCount: snapshot.data!.photo!.length,
                     itemBuilder: (__, index) {
                       return GestureDetector(
                         onVerticalDragUpdate: (drag) {
                           if (drag.primaryDelta! < 0) {
-                            _itemScrollController.scrollTo(
-                                index: index + 1,
-                                duration: Duration(milliseconds: 100),
-                                curve: Curves.easeInOutCubic);
+                            controller.scrollToNext(index: index);
                           } else {
                             //ensure that index is not negative
                             if (index - 1 < 0) {
                               return;
                             }
-                            _itemScrollController.scrollTo(
-                                index: index - 1,
-                                duration: Duration(milliseconds: 100),
-                                curve: Curves.easeInOutCubic);
+                            controller.scrollToPrevious(index: index);
                           }
                         },
-                        child: Container(
-                            height: maxHeight,
-                            child: FeedItem(photo: dogPhotos[index])),
+                        child: Stack(
+                          children: [
+                            Container(
+                                height: maxHeight,
+                                child: FeedItem(photo: dogPhotos[index])),
+                            Positioned(
+                                bottom: maxHeight * 0.02,
+                                left: 0,
+                                right: 0,
+                                child: InkWell(
+                                  onTap: () {
+                                    controller.scrollToNext(index: index);
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_downward,
+                                    size: 50,
+                                  ),
+                                )),
+                          ],
+                        ),
                       );
                     });
               } else {
