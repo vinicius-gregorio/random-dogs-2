@@ -70,6 +70,8 @@ class _FeedPageState extends State<FeedPage> {
                         ),
                       );
                     });
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Erro'));
               } else {
                 return Center(child: CircularProgressIndicator());
               }
