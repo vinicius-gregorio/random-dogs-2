@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:random_dogs_2/src/modules/feed/domain/entities/dog_response.dart';
 import 'package:random_dogs_2/src/modules/feed/domain/usecases/load_feed_usecase.dart';
 import 'package:random_dogs_2/src/modules/feed/feed_controller.dart';
-import 'package:random_dogs_2/src/modules/feed/ui/components/feed_item_component.dart';
-import 'package:random_dogs_2/src/shared/components/lottie_animated_icon.dart';
-import 'package:random_dogs_2/src/theme/app_animations.dart';
+import 'package:random_dogs_2/src/modules/feed/ui/components/scrollable_item_component.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class FeedPage extends StatefulWidget {
@@ -17,10 +14,20 @@ class FeedPage extends StatefulWidget {
 
 class _FeedPageState extends State<FeedPage> {
   final controller = FeedController();
-
   @override
   void initState() {
     super.initState();
+    controller.itemPositionsListener.itemPositions.addListener(() {
+      print(controller.itemPositionsListener.itemPositions.value.single.index);
+      print(controller.dogsPhotosList.length - 3);
+      if (controller.itemPositionsListener.itemPositions.value.single.index ==
+          controller.dogsPhotosList.length - 3) {
+        controller.updateDogsImages(LoadFeedParams(numberOfPhotos: 10));
+        setState(() {});
+        // Future.delayed(Duration(milliseconds: 1000)).then(
+        //     (value) => controller.scrollTo(index: controller.dogsListIndex));
+      }
+    });
   }
 
   @override
@@ -31,13 +38,15 @@ class _FeedPageState extends State<FeedPage> {
         child: FutureBuilder<DogResponse?>(
             future: controller.getPhotos(LoadFeedParams(numberOfPhotos: 10)),
             builder: (_, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                final dogPhotos = snapshot.data!.photo!;
+              if (snapshot.connectionState == ConnectionState.done ||
+                  controller.dogsPhotosList.length > 1) {
+                final dogPhotos = controller.dogsPhotosList;
                 return ScrollablePositionedList.builder(
                     itemScrollController: controller.itemScrollController,
+                    addAutomaticKeepAlives: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemPositionsListener: controller.itemPositionsListener,
-                    itemCount: snapshot.data!.photo!.length,
+                    itemCount: dogPhotos.length,
                     itemBuilder: (__, index) {
                       return GestureDetector(
                         onVerticalDragUpdate: (drag) {
@@ -51,32 +60,19 @@ class _FeedPageState extends State<FeedPage> {
                             controller.scrollToPrevious(index: index);
                           }
                         },
-                        child: Stack(
-                          children: [
-                            Container(
-                                height: maxHeight,
-                                child: FeedItem(photo: dogPhotos[index])),
-                            Positioned(
-                                bottom: maxHeight * 0.02,
-                                left: 0,
-                                right: 0,
-                                child: InkWell(
-                                  onTap: () {
-                                    controller.scrollToNext(index: index);
-                                  },
-                                  child: LottieAnimatedIcon(
-                                    iconUrl: LottieAnimations.arrowDownPump,
-                                    height: 70,
-                                  ),
-                                )),
-                          ],
-                        ),
+                        child: ScrollableItem(
+                            maxHeight: maxHeight,
+                            dogPhotos: dogPhotos,
+                            controller: controller,
+                            index: index),
                       );
                     });
               } else if (snapshot.hasError) {
                 return Center(child: Text('Erro'));
-              } else {
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator());
+              } else {
+                return Container();
               }
             }),
       );

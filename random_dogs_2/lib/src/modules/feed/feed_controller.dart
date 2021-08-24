@@ -8,14 +8,27 @@ import 'infra/repositories/feed_repository_impl.dart';
 
 class FeedController {
   final loadfeedUsecase = LoadFeedUsecase(FeedRepositoryImpl(DogsApiImpl()));
-  List<String>? dogsPhotosList;
+  List<String> dogsPhotosList = [];
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
 
+  int dogsListIndex = 0;
   Future<DogResponse?> getPhotos(LoadFeedParams params) async {
     final result = await loadfeedUsecase.repository.getFeed(params);
+    if (dogsPhotosList.length < 1) {
+      dogsPhotosList = result.fold((l) => [], (r) => r.photo!);
+    }
     return result.fold((l) => null, (r) => r);
+  }
+
+  void updateDogsImages(LoadFeedParams params) async {
+    final result = await loadfeedUsecase.repository.getFeed(params);
+    var newDogsPhotosList = result.fold((l) => null, (r) => r.photo);
+    dogsListIndex = dogsPhotosList.length - 3;
+    newDogsPhotosList?.forEach((photo) {
+      dogsPhotosList.add(photo);
+    });
   }
 
   void scrollToNext({required int index}) {
@@ -28,6 +41,13 @@ class FeedController {
   void scrollToPrevious({required int index}) {
     itemScrollController.scrollTo(
         index: index - 1,
+        duration: Duration(milliseconds: 100),
+        curve: Curves.easeInOutCubic);
+  }
+
+  void scrollTo({required int index}) {
+    itemScrollController.scrollTo(
+        index: index,
         duration: Duration(milliseconds: 100),
         curve: Curves.easeInOutCubic);
   }
