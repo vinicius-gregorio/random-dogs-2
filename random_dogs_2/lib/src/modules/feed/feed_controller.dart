@@ -14,6 +14,7 @@ class FeedController {
       ItemPositionsListener.create();
 
   int dogsListIndex = 0;
+
   Future<DogResponse?> getPhotos(LoadFeedParams params) async {
     final result = await loadfeedUsecase.repository.getFeed(params);
     if (dogsPhotosList.length < 1) {

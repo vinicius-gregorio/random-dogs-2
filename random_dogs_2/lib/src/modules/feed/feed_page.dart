@@ -18,14 +18,13 @@ class _FeedPageState extends State<FeedPage> {
   void initState() {
     super.initState();
     controller.itemPositionsListener.itemPositions.addListener(() {
-      print(controller.itemPositionsListener.itemPositions.value.single.index);
-      print(controller.dogsPhotosList.length - 3);
       if (controller.itemPositionsListener.itemPositions.value.single.index ==
           controller.dogsPhotosList.length - 3) {
         controller.updateDogsImages(LoadFeedParams(numberOfPhotos: 10));
+
         setState(() {});
-        // Future.delayed(Duration(milliseconds: 1000)).then(
-        //     (value) => controller.scrollTo(index: controller.dogsListIndex));
+      } else {
+        return;
       }
     });
   }
