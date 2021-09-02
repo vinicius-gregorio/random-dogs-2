@@ -5,6 +5,8 @@ import 'package:random_dogs_2/src/modules/feed/feed_controller.dart';
 import 'package:random_dogs_2/src/modules/feed/ui/components/scrollable_item_component.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+import 'ui/components/pop_menu_component.dart';
+
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
 
@@ -14,6 +16,7 @@ class FeedPage extends StatefulWidget {
 
 class _FeedPageState extends State<FeedPage> {
   final controller = FeedController();
+  Offset? offset;
   @override
   void initState() {
     super.initState();
@@ -31,6 +34,8 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   Widget build(BuildContext context) {
+    final customPopMenu = CustomPopMenu(context: context, offset: offset);
+
     return LayoutBuilder(builder: (context, constraints) {
       var maxHeight = constraints.maxHeight;
       return Container(
@@ -59,7 +64,30 @@ class _FeedPageState extends State<FeedPage> {
                             controller.scrollToPrevious(index: index);
                           }
                         },
-                        onLongPressEnd: (long) {},
+                        onLongPressStart: (long) async {
+                          await showMenu(
+                            context: context,
+                            position: RelativeRect.fromLTRB(
+                                long.globalPosition.dx,
+                                long.globalPosition.dy,
+                                100,
+                                100),
+                            items: [
+                              PopupMenuItem(
+                                value: 1,
+                                child: Text("Save Image"),
+                              ),
+                            ],
+                            elevation: 8.0,
+                          ).then((value) {
+                            if (value != null) {
+                              if (value == 1) {
+                                controller.saveImage(dogPhotos[index]);
+                              }
+                            }
+                            ;
+                          });
+                        },
                         child: ScrollableItem(
                             maxHeight: maxHeight,
                             dogPhotos: dogPhotos,

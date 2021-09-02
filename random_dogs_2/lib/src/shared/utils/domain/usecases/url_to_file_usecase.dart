@@ -33,9 +33,18 @@ class URLToFileUsecase implements IURLToFileUsecase {
       var rng = new Random();
       Directory tempDir = await getTemporaryDirectory();
       String tempPath = tempDir.path;
+      print('temp path : ');
+      print(tempPath);
+      print('------');
       File file =
           new File('$tempPath' + (rng.nextInt(100)).toString() + '.png');
+      print('file : ');
+      print(file.uri);
+      print('------');
       final response = await httpController.repository.fetch(params.url);
+      print('response : ');
+      print(Right(await file.writeAsBytes(response.bodyBytes)));
+      print('------');
       return Right(await file.writeAsBytes(response.bodyBytes));
     } catch (e) {
       return Left(URLToFileError(message: 'Error: ${e.toString()}'));
