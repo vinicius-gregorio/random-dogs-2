@@ -14,6 +14,7 @@ class FeedRepositoryImpl implements FeedRepository {
   Future<Either<FeedError, DogResponse>> getFeed(LoadFeedParams params) async {
     try {
       final feed = await feedDataSource.getFeed(params);
+      print('got the feed');
       return Right(feed);
     } on FeedError catch (e) {
       return Left(e);

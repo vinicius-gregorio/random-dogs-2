@@ -19,7 +19,7 @@ class _FeedPageState extends State<FeedPage> {
     super.initState();
     controller.itemPositionsListener.itemPositions.addListener(() {
       if (controller.itemPositionsListener.itemPositions.value.single.index ==
-          controller.dogsPhotosList.length - 3) {
+          controller.dogsPhotosList.length - 5) {
         controller.updateDogsImages(LoadFeedParams(numberOfPhotos: 10));
 
         setState(() {});
@@ -59,6 +59,7 @@ class _FeedPageState extends State<FeedPage> {
                             controller.scrollToPrevious(index: index);
                           }
                         },
+                        onLongPressEnd: (long) {},
                         child: ScrollableItem(
                             maxHeight: maxHeight,
                             dogPhotos: dogPhotos,

@@ -10,7 +10,6 @@ class DogsApiImpl implements FeedDatasource {
   @override
   Future<DogResponse> getFeed(LoadFeedParams params) async {
     final httpController = HttpClientController(DioRepository());
-    // var response = DogResponse(photo: ['photo 1', 'photo 2'], status: '200');
 
     var response = await httpController.repository
         .fetch('$dogBaseUrl/breeds/image/random/${params.numberOfPhotos}');

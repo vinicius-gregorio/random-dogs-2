@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:random_dogs_2/src/modules/feed/domain/entities/dog_response.dart';
+import 'package:random_dogs_2/src/shared/utils/domain/usecases/url_to_file_usecase.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'domain/usecases/load_feed_usecase.dart';
@@ -21,6 +22,10 @@ class FeedController {
       dogsPhotosList = result.fold((l) => [], (r) => r.photo!);
     }
     return result.fold((l) => null, (r) => r);
+  }
+
+  void saveImage(String url) {
+    final save = URLToFileUsecase(URLToFileParams(url));
   }
 
   void updateDogsImages(LoadFeedParams params) async {

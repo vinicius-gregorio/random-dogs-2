@@ -7,3 +7,11 @@ import 'package:random_dogs_2/src/shared/utils/domain/usecases/url_to_file_useca
 abstract class URLToFileRepository {
   Future<Either<URLToFileError, File>> convertFile(URLToFileParams params);
 }
+
+class URLToFileRepositoryImpl implements URLToFileRepository {
+  @override
+  Future<Either<URLToFileError, File>> convertFile(URLToFileParams params) {
+    // TODO: implement convertFile
+    throw UnimplementedError();
+  }
+}
