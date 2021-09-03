@@ -5,8 +5,6 @@ import 'package:random_dogs_2/src/modules/feed/feed_controller.dart';
 import 'package:random_dogs_2/src/modules/feed/ui/components/scrollable_item_component.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import 'ui/components/pop_menu_component.dart';
-
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
 
@@ -34,8 +32,6 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   Widget build(BuildContext context) {
-    final customPopMenu = CustomPopMenu(context: context, offset: offset);
-
     return LayoutBuilder(builder: (context, constraints) {
       var maxHeight = constraints.maxHeight;
       return Container(

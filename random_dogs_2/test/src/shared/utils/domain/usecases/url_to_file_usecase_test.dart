@@ -9,7 +9,8 @@ class URLToFileRepositoryMock extends Mock implements URLToFileRepository {}
 
 Future<void> main() async {
   final repository = URLToFileRepositoryMock();
-  final urlToFileUsecase = URLToFileUsecase(repository);
+  final urlToFileUsecase =
+      URLToFileUsecase(params: URLToFileParams(''), repository: repository);
   final params = URLToFileParams('');
   test('Should return error if invalid URL', () async {
     when(() => repository.convertFile(params))
