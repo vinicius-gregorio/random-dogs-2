@@ -37,7 +37,7 @@ class URLToFileUsecase implements IURLToFileUsecase {
       print(tempPath);
       print('------');
       File file =
-          new File('$tempPath' + (rng.nextInt(100)).toString() + '.png');
+          new File('$tempPath' + (rng.nextInt(100)).toString() + '.jpg');
       print('file : ');
       print(file.uri);
       print('------');

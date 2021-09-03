@@ -82,6 +82,8 @@ class _FeedPageState extends State<FeedPage> {
                           ).then((value) {
                             if (value != null) {
                               if (value == 1) {
+                                print('dog photo: ');
+                                print(dogPhotos[index]);
                                 controller.saveImage(dogPhotos[index]);
                               }
                             }
