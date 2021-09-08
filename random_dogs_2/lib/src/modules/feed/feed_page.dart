@@ -80,10 +80,10 @@ class _FeedPageState extends State<FeedPage> {
                               if (value == 1) {
                                 print('dog photo: ');
                                 print(dogPhotos[index]);
-                                controller.saveImage(dogPhotos[index]);
+                                // this crashes the app LOL
+                                // controller.saveImage(dogPhotos[index]);
                               }
                             }
-                            ;
                           });
                         },
                         child: ScrollableItem(

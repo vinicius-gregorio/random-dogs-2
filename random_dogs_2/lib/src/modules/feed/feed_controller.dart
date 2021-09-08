@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:random_dogs_2/src/modules/feed/domain/entities/dog_response.dart';
-import 'package:random_dogs_2/src/modules/feed/ui/components/pop_menu_component.dart';
 import 'package:random_dogs_2/src/shared/utils/domain/usecases/url_to_file_usecase.dart';
 import 'package:random_dogs_2/src/shared/utils/external/image_downloader_datasource.dart';
 import 'package:random_dogs_2/src/shared/utils/infra/repositories/url_to_file_repository_impl.dart';

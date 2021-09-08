@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:image_downloader/image_downloader.dart';
 import 'package:random_dogs_2/src/shared/utils/domain/errors/url_to_file_errors.dart';
