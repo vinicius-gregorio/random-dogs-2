@@ -80,6 +80,8 @@ class _FeedPageState extends State<FeedPage> {
                               if (value == 1) {
                                 print('dog photo: ');
                                 print(dogPhotos[index]);
+                                controller.storageController.repository
+                                    .save(dogPhotos[index]);
                                 // this crashes the app LOL
                                 // controller.saveImage(dogPhotos[index]);
                               }

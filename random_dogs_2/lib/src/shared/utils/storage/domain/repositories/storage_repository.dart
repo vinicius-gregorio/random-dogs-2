@@ -1,5 +1,5 @@
 abstract class IStorageRepository {
-  void save();
+  void save(dynamic data);
   void delete();
   void update();
   Future read();
