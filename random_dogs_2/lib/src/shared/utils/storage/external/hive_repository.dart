@@ -21,9 +21,10 @@ class HiveRepository implements IStorageRepository {
     if (!Hive.isBoxOpen('Favorites')) {
       Hive.init(appDocPath);
     }
-    var box = Hive.box('Favorites');
-    var values = box.toMap();
-    print(values);
+
+    var box = Hive.openBox('Favorites');
+    var values = box.then((value) => value.toMap());
+    print(values.toString());
     return values;
   }
 

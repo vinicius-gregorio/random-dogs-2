@@ -8,7 +8,13 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(controller.test);
-    return Container();
+    print(controller.storageController.repository.read());
+    return Container(
+      child: FutureBuilder(
+          future: controller.storageController.repository.read(),
+          builder: (_, snapshot) {
+            return Text(snapshot.data.toString());
+          }),
+    );
   }
 }
