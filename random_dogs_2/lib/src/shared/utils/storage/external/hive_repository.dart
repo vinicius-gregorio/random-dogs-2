@@ -14,7 +14,7 @@ class HiveRepository implements IStorageRepository {
   }
 
   @override
-  Future read() async {
+  Future<List<String>> read() async {
     Directory appDocDir = await getApplicationDocumentsDirectory();
     String appDocPath = appDocDir.path;
 
@@ -25,7 +25,12 @@ class HiveRepository implements IStorageRepository {
     var box = Hive.openBox('Favorites');
     var values = box.then((value) => value.toMap());
     print(values.toString());
-    return values;
+    List<String> images = [];
+    values.then((value) => value.forEach((key, value) {
+          images.add(value);
+        }));
+
+    return images;
   }
 
   @override
