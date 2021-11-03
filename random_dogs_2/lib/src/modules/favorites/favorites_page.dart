@@ -9,12 +9,10 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(controller.storageController.repository.read());
     return Container(
       child: FutureBuilder<List<String>>(
           future: controller.storageController.repository.read(),
           builder: (_, snapshot) {
-            print(snapshot.data?[4]);
             if (snapshot.hasData) {
               return ListView.builder(
                   itemCount: snapshot.data?.length,

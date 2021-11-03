@@ -26,7 +26,7 @@ class URLToFileUsecase implements IURLToFileUsecase {
     if (!isURL(params.url)) {
       return Left(URLToFileError(message: 'The provided image is not an URL'));
     }
-    print(params.url);
+
     return repository.convertFile(params);
   }
 }

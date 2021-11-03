@@ -79,10 +79,8 @@ class _FeedPageState extends State<FeedPage> {
                             if (value != null) {
                               if (value == 1) {
                                 try {
-                                  controller.storageController.repository
-                                      .save(dogPhotos[index]);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      controller.snackBarFavorited);
+                                  controller.saveImage(
+                                      dogPhotos[index], context);
                                 } catch (e) {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(controller.snackBarError);

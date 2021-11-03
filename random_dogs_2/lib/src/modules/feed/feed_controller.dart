@@ -27,8 +27,6 @@ class FeedController {
 
   int dogsListIndex = 0;
 
-  final storageController = StorageController(HiveRepository());
-
   final snackBarFavorited = SnackBar(
     content: const Text('Favorited'),
   );
@@ -47,8 +45,11 @@ class FeedController {
     return result.fold((l) => null, (r) => r);
   }
 
-  void saveImage(String url) async {
-    urlToFileUsecase.call(URLToFileParams(url));
+  void saveImage(String url, BuildContext context) async {
+    try {
+      StorageController(HiveRepository()).repository.save(url);
+      ScaffoldMessenger.of(context).showSnackBar(snackBarFavorited);
+    } catch (e) {}
   }
 
   void updateDogsImages(LoadFeedParams params) async {

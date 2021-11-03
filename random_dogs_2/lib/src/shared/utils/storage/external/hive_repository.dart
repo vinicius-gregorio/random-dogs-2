@@ -23,7 +23,7 @@ class HiveRepository implements IStorageRepository {
 
     var box = Hive.openBox('Favorites');
     var values = box.then((value) => value.toMap());
-    print(values.toString());
+
     List<String> images = [];
     values.then((value) => value.forEach((key, value) {
           images.add(value);

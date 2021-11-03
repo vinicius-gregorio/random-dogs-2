@@ -19,9 +19,9 @@ class ScrollableItem extends StatelessWidget {
   final List<String> dogPhotos;
   final FeedController controller;
   final int index;
-  final isFavorited = false;
   @override
   Widget build(BuildContext context) {
+    bool isFavorited = false;
     return Stack(
       children: [
         Container(height: maxHeight, child: FeedItem(photo: dogPhotos[index])),
@@ -35,7 +35,7 @@ class ScrollableItem extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () {
-                        print('pressed Share');
+                        controller.saveImage(dogPhotos[index], context);
                       },
                       icon: Icon(
                         Icons.favorite_outline,
@@ -45,7 +45,7 @@ class ScrollableItem extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 5)),
                   IconButton(
                       onPressed: () {
-                        print('pressed Share');
+                        print('pressed Copy');
                       },
                       icon: Icon(
                         Icons.copy,
