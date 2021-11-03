@@ -78,10 +78,15 @@ class _FeedPageState extends State<FeedPage> {
                           ).then((value) {
                             if (value != null) {
                               if (value == 1) {
-                                print('dog photo: ');
-                                print(dogPhotos[index]);
-                                controller.storageController.repository
-                                    .save(dogPhotos[index]);
+                                try {
+                                  controller.storageController.repository
+                                      .save(dogPhotos[index]);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      controller.snackBarFavorited);
+                                } catch (e) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(controller.snackBarError);
+                                }
                                 // this crashes the app LOL
                                 // controller.saveImage(dogPhotos[index]);
                               }

@@ -13,15 +13,31 @@ import 'infra/repositories/feed_repository_impl.dart';
 
 class FeedController {
   final loadfeedUsecase = LoadFeedUsecase(FeedRepositoryImpl(DogsApiImpl()));
+
   final urlToFileUsecase = URLToFileUsecase(
       params: URLToFileParams(''),
       repository: URLToFileRepositoryImpl(dataSource: ImageDownloaderImpl()));
+
   List<String> dogsPhotosList = [];
+
   final ItemScrollController itemScrollController = ItemScrollController();
+
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
+
   int dogsListIndex = 0;
+
   final storageController = StorageController(HiveRepository());
+
+  final snackBarFavorited = SnackBar(
+    content: const Text('Favorited'),
+  );
+  final snackBarError = SnackBar(
+    content: const Text('Error'),
+  );
+  final snackBarUnfavorited = SnackBar(
+    content: const Text('Unfavorited'),
+  );
 
   Future<DogResponse?> getPhotos(LoadFeedParams params) async {
     final result = await loadfeedUsecase.repository.getFeed(params);

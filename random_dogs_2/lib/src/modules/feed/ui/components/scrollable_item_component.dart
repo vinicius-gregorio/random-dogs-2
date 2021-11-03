@@ -19,6 +19,7 @@ class ScrollableItem extends StatelessWidget {
   final List<String> dogPhotos;
   final FeedController controller;
   final int index;
+  final isFavorited = false;
   @override
   Widget build(BuildContext context) {
     return Stack(
