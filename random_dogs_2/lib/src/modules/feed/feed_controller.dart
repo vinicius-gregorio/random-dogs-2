@@ -7,6 +7,7 @@ import 'package:random_dogs_2/src/shared/utils/storage/domain/controllers/storag
 import 'package:random_dogs_2/src/shared/utils/storage/external/hive_repository.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:flutter/services.dart';
+import 'package:share/share.dart';
 import 'domain/usecases/load_feed_usecase.dart';
 import 'external/dogs_api/dogs_api_impl.dart';
 import 'infra/repositories/feed_repository_impl.dart';
@@ -43,6 +44,14 @@ class FeedController {
     try {
       StorageController(HiveRepository()).repository.save(url);
       ScaffoldMessenger.of(context).showSnackBar(snackBarFavorited);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(snackBarError);
+    }
+  }
+
+  void shareImage(String url, BuildContext context) async {
+    try {
+      Share.share('Look at this beautiful Dog: $url');
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(snackBarError);
     }
