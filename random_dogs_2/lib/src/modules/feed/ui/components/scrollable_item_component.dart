@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:random_dogs_2/src/shared/components/lottie_animated_icon.dart';
 import 'package:random_dogs_2/src/theme/app_animations.dart';
 import 'package:random_dogs_2/src/theme/app_colors.dart';
@@ -45,7 +46,8 @@ class ScrollableItem extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 5)),
                   IconButton(
                       onPressed: () {
-                        print('pressed Copy');
+                        controller.copyImageToClipboard(
+                            ClipboardData(text: dogPhotos[index]), context);
                       },
                       icon: Icon(
                         Icons.copy,
