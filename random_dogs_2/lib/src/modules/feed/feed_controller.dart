@@ -51,7 +51,7 @@ class FeedController {
 
   void shareImage(String url, BuildContext context) async {
     try {
-      Share.share('Look at this beautiful Dog: $url');
+      Share.share('Look at this beautiful dog: $url');
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(snackBarError);
     }

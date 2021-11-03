@@ -13,6 +13,9 @@ class FavoritesPage extends StatelessWidget {
       child: FutureBuilder<List<String>>(
           future: controller.storageController.repository.read(),
           builder: (_, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            }
             if (snapshot.hasData) {
               return ListView.builder(
                   itemCount: snapshot.data?.length,

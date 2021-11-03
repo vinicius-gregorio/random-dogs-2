@@ -22,7 +22,6 @@ class ScrollableItem extends StatelessWidget {
   final int index;
   @override
   Widget build(BuildContext context) {
-    bool isFavorited = false;
     return Stack(
       children: [
         Container(height: maxHeight, child: FeedItem(photo: dogPhotos[index])),

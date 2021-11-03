@@ -7,8 +7,7 @@ class GridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
-      width: 150,
+      height: 350,
       child: Image.network(
         imageUrl,
         fit: BoxFit.cover,
