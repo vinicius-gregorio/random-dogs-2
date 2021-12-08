@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:random_dogs_2/src/modules/favorites/favorites_controller.dart';
 import 'package:random_dogs_2/src/modules/favorites/ui/components/grid_item.dart';
+import 'package:random_dogs_2/src/modules/feed/feed_controller.dart';
 
 class FavoritesPage extends StatelessWidget {
   FavoritesPage({Key? key}) : super(key: key);
 
   final controller = FavoritesController();
-
+  final feedController = FeedController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,10 +25,15 @@ class FavoritesPage extends StatelessWidget {
                 return ListView.builder(
                     itemCount: snapshot.data?.length,
                     itemBuilder: (_, index) {
-                      return GridItem(imageUrl: snapshot.data?[index]);
+                      return GridItem(
+                          imageUrl: snapshot.data?[index],
+                          onPressShare: () => feedController.shareImage(
+                              snapshot.data![index], context));
                     });
               }
-              return Container();
+              return Container(
+                child: Text('Dog.'),
+              );
             }),
       ),
     );

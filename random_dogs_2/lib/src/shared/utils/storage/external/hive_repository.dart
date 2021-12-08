@@ -8,7 +8,7 @@ class HiveRepository implements IStorageRepository {
   var path = Directory.current.path;
 
   @override
-  void delete() {
+  void delete(dynamic data) {
     // TODO: implement delete
   }
 

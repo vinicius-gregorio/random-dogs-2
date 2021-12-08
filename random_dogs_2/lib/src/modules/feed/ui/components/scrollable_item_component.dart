@@ -57,7 +57,6 @@ class ScrollableItem extends StatelessWidget {
                   IconButton(
                       onPressed: () {
                         controller.shareImage(dogPhotos[index], context);
-                        print('pressed Share');
                       },
                       icon: Icon(
                         Icons.send_outlined,

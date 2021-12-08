@@ -3,7 +3,9 @@ import 'package:random_dogs_2/src/theme/app_colors.dart';
 
 class GridItem extends StatelessWidget {
   final imageUrl;
-  GridItem({Key? key, required this.imageUrl}) : super(key: key);
+  final VoidCallback onPressShare;
+  GridItem({Key? key, required this.imageUrl, required this.onPressShare})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,7 @@ class GridItem extends StatelessWidget {
           ),
           Container(
             height: 50,
+            margin: const EdgeInsets.only(bottom: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -31,9 +34,7 @@ class GridItem extends StatelessWidget {
                       color: AppColors.icon,
                     )),
                 IconButton(
-                    onPressed: () {
-                      print('pressed share');
-                    },
+                    onPressed: onPressShare,
                     icon: Icon(
                       Icons.send_outlined,
                       size: 30,
