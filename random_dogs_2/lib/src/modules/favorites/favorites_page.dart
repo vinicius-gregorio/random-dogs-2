@@ -26,6 +26,8 @@ class FavoritesPage extends StatelessWidget {
                     itemBuilder: (_, index) {
                       return GridItem(
                           imageUrl: snapshot.data?[index],
+                          onPressUnfavorite: () => controller.deleteImage(
+                              snapshot.data![index], context),
                           onPressShare: () => controller.shareImage(
                               snapshot.data![index], context));
                     });

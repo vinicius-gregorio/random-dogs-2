@@ -14,9 +14,10 @@ class HiveRepository implements IStorageRepository {
     if (!Hive.isBoxOpen('Favorites')) {
       Hive.init(appDocPath);
     }
-
+    print('delete $data}');
     var box = await Hive.openBox('Favorites');
-    await box.delete(data);
+    await box.delete(data).whenComplete(() => print('completed'));
+    await box.deleteAll([data]);
   }
 
   @override

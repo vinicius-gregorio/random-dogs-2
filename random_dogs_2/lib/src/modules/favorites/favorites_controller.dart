@@ -6,8 +6,8 @@ import 'package:share/share.dart';
 class FavoritesController {
   final storageController = StorageController(HiveRepository());
 
-  final snackBarFavorited = SnackBar(
-    content: const Text('Favorited'),
+  final snackBarUnfavorited = SnackBar(
+    content: const Text('Unfavorited'),
   );
   final snackBarError = SnackBar(
     content: const Text('Error'),
@@ -16,6 +16,15 @@ class FavoritesController {
   void shareImage(String url, BuildContext context) async {
     try {
       Share.share('Look at this beautiful dog: $url');
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(snackBarError);
+    }
+  }
+
+  void deleteImage(String url, BuildContext context) async {
+    try {
+      StorageController(HiveRepository()).repository.delete(url);
+      ScaffoldMessenger.of(context).showSnackBar(snackBarUnfavorited);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(snackBarError);
     }
