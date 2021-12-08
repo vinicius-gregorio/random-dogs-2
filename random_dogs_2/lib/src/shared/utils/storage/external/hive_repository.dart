@@ -8,8 +8,15 @@ class HiveRepository implements IStorageRepository {
   var path = Directory.current.path;
 
   @override
-  void delete(dynamic data) {
-    // TODO: implement delete
+  void delete(dynamic data) async {
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    String appDocPath = appDocDir.path;
+    if (!Hive.isBoxOpen('Favorites')) {
+      Hive.init(appDocPath);
+    }
+
+    var box = await Hive.openBox('Favorites');
+    await box.delete(data);
   }
 
   @override

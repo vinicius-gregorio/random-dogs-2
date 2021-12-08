@@ -7,7 +7,6 @@ class FavoritesPage extends StatelessWidget {
   FavoritesPage({Key? key}) : super(key: key);
 
   final controller = FavoritesController();
-  final feedController = FeedController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +26,7 @@ class FavoritesPage extends StatelessWidget {
                     itemBuilder: (_, index) {
                       return GridItem(
                           imageUrl: snapshot.data?[index],
-                          onPressShare: () => feedController.shareImage(
+                          onPressShare: () => controller.shareImage(
                               snapshot.data![index], context));
                     });
               }
