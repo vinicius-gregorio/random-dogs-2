@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:random_dogs_2/src/theme/app_colors.dart';
 
 class GridItem extends StatelessWidget {
   final imageUrl;
@@ -25,7 +24,7 @@ class GridItem extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          // Container(
+          // Container(dsa
           //   height: 50,
           //   margin: const EdgeInsets.only(bottom: 15),
           //   child: Row(

@@ -20,8 +20,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite_border_outlined), label: 'Favorites'),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Feed'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings_outlined), label: 'Settings'),
+          BottomNavigationBarItem(icon: Icon(Icons.help), label: 'Donate'),
         ],
         currentIndex: controller.actualIndex,
         onTap: (int index) {

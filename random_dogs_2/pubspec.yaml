@@ -35,7 +35,8 @@ dev_dependencies:
   mocktail: ^0.1.4
 
 flutter: 
-  
+  assets:
+    - lib/src/assets/images/
   uses-material-design: true
 
   

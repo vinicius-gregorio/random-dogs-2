@@ -1,3 +1,3 @@
 class AppImages {
-  static final placeholder = 'assets/images/placeholder.png';
+  static final fluffyDogImage = 'lib/src/assets/images/fluffy-dog.jpg';
 }
