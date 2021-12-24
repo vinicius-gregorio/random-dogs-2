@@ -17,15 +17,19 @@ dependencies:
   dartz: ^0.10.0-nullsafety.2
   path_provider: ^2.0.2
   image_downloader: ^0.30.0
-  hive: ^2.0.4
+  google_mobile_ads: ^1.0.1
+  share: ^2.0.4
   
+
+  #DATA PERSISTANCE
+  hive: ^2.0.4
+
   #REQUESTS
   dio: ^4.0.0
 
   #UI
   scrollable_positioned_list: ^0.2.0-nullsafety.0
   lottie: ^1.1.0
-  share: ^2.0.4
   
   
 
