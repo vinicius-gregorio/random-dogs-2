@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: false,
       child: Scaffold(
         body: homePagesList[controller.actualIndex],
         // bottomNavigationBar: BottomNavigationBar(
