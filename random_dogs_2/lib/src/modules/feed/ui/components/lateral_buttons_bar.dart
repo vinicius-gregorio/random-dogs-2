@@ -12,18 +12,21 @@ class LateralButtonsBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 50,
+      decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.3),
+          borderRadius: BorderRadius.circular(10.0)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          IconButton(
-              onPressed: () {
-                controller.saveImage(photo, context);
-              },
-              icon: Icon(
-                Icons.favorite_outline,
-                size: 30,
-                color: AppColors.icon,
-              )),
+          // IconButton(
+          //     onPressed: () {
+          //       controller.saveImage(photo, context);
+          //     },
+          //     icon: Icon(
+          //       Icons.favorite_outline,
+          //       size: 30,
+          //       color: AppColors.icon,
+          //     )),
           Padding(padding: EdgeInsets.only(top: 5)),
           IconButton(
               onPressed: () {

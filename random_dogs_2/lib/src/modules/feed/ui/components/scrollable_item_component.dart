@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:random_dogs_2/src/modules/feed/ui/components/lateral_buttons_bar.dart';
 import 'package:random_dogs_2/src/shared/components/lottie_animated_icon.dart';
 import 'package:random_dogs_2/src/theme/app_animations.dart';
-import 'package:random_dogs_2/src/theme/app_colors.dart';
 
 import '../../feed_controller.dart';
 import 'feed_item_component.dart';

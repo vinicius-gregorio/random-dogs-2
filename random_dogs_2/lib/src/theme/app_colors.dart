@@ -7,7 +7,7 @@ class AppColors {
   static final heading = Color(0xFF585666);
   static final body = Color(0xFF706E7A);
   static final stroke = Color(0xFFE3E3E6);
-  static final icon = Color(0xFF9C9C9C);
+  static final icon = Color(0xFFFFFFFF);
   static final iconSelected = Color(0xFF9C4040);
   static final shape = Color(0xFFFAFAFC);
   static final background = Color(0xFF4a3f35);
