@@ -47,29 +47,31 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: homePagesList[controller.actualIndex],
-      // bottomNavigationBar: BottomNavigationBar(
-      //   items: [
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.favorite_border_outlined), label: 'Favorites'),
-      //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Feed'),
-      //     BottomNavigationBarItem(icon: Icon(Icons.help), label: 'Donate'),
-      //   ],
-      //   currentIndex: controller.actualIndex,
-      //   onTap: (int index) {
-      //     setState(() {
-      //       controller.onTabTapped(index);
-      //     });
-      //   },
-      // ),
-      bottomNavigationBar: Visibility(
-          visible: isBottomBannerLoaded,
-          child: Container(
-            height: _bottomBannerAd.size.height.toDouble(),
-            width: _bottomBannerAd.size.width.toDouble(),
-            child: AdWidget(ad: _bottomBannerAd),
-          )),
+    return SafeArea(
+      child: Scaffold(
+        body: homePagesList[controller.actualIndex],
+        // bottomNavigationBar: BottomNavigationBar(
+        //   items: [
+        //     BottomNavigationBarItem(
+        //         icon: Icon(Icons.favorite_border_outlined), label: 'Favorites'),
+        //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Feed'),
+        //     BottomNavigationBarItem(icon: Icon(Icons.help), label: 'Donate'),
+        //   ],
+        //   currentIndex: controller.actualIndex,
+        //   onTap: (int index) {
+        //     setState(() {
+        //       controller.onTabTapped(index);
+        //     });
+        //   },
+        // ),
+        bottomNavigationBar: Visibility(
+            visible: isBottomBannerLoaded,
+            child: Container(
+              height: _bottomBannerAd.size.height.toDouble(),
+              width: _bottomBannerAd.size.width.toDouble(),
+              child: AdWidget(ad: _bottomBannerAd),
+            )),
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:random_dogs_2/src/modules/feed/ui/components/lateral_buttons_bar.dart';
 import 'package:random_dogs_2/src/shared/components/lottie_animated_icon.dart';
 import 'package:random_dogs_2/src/theme/app_animations.dart';
 import 'package:random_dogs_2/src/theme/app_colors.dart';
@@ -28,44 +29,7 @@ class ScrollableItem extends StatelessWidget {
         Positioned(
             bottom: maxHeight * 0.1,
             right: maxHeight * 0.01,
-            child: Container(
-              width: 50,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        controller.saveImage(dogPhotos[index], context);
-                      },
-                      icon: Icon(
-                        Icons.favorite_outline,
-                        size: 30,
-                        color: AppColors.icon,
-                      )),
-                  Padding(padding: EdgeInsets.only(top: 5)),
-                  IconButton(
-                      onPressed: () {
-                        controller.copyImageToClipboard(
-                            ClipboardData(text: dogPhotos[index]), context);
-                      },
-                      icon: Icon(
-                        Icons.copy,
-                        size: 30,
-                        color: AppColors.icon,
-                      )),
-                  Padding(padding: EdgeInsets.only(top: 5)),
-                  IconButton(
-                      onPressed: () {
-                        controller.shareImage(dogPhotos[index], context);
-                      },
-                      icon: Icon(
-                        Icons.send_outlined,
-                        size: 30,
-                        color: AppColors.icon,
-                      )),
-                ],
-              ),
-            )),
+            child: LateralButtonsBar(photo: dogPhotos[index])),
         Positioned(
             bottom: maxHeight * 0.02,
             left: 0,
