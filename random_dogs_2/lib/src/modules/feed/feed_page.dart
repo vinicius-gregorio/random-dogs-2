@@ -60,37 +60,6 @@ class _FeedPageState extends State<FeedPage> {
                             controller.scrollToPrevious(index: index);
                           }
                         },
-                        onLongPressStart: (long) async {
-                          await showMenu(
-                            context: context,
-                            position: RelativeRect.fromLTRB(
-                                long.globalPosition.dx,
-                                long.globalPosition.dy,
-                                100,
-                                100),
-                            items: [
-                              PopupMenuItem(
-                                value: 1,
-                                child: Text("Save Image"),
-                              ),
-                            ],
-                            elevation: 8.0,
-                          ).then((value) {
-                            if (value != null) {
-                              if (value == 1) {
-                                try {
-                                  controller.saveImage(
-                                      dogPhotos[index], context);
-                                } catch (e) {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(controller.snackBarError);
-                                }
-                                // this crashes the app LOL
-                                // controller.saveImage(dogPhotos[index]);
-                              }
-                            }
-                          });
-                        },
                         child: ScrollableItem(
                             maxHeight: maxHeight,
                             dogPhotos: dogPhotos,

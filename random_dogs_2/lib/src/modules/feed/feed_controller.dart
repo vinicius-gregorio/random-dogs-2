@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:random_dogs_2/src/modules/feed/domain/entities/dog_response.dart';
-import 'package:random_dogs_2/src/shared/utils/domain/usecases/url_to_file_usecase.dart';
-import 'package:random_dogs_2/src/shared/utils/external/image_downloader_datasource.dart';
-import 'package:random_dogs_2/src/shared/utils/infra/repositories/url_to_file_repository_impl.dart';
-import 'package:random_dogs_2/src/shared/utils/storage/domain/controllers/storage_controller.dart';
-import 'package:random_dogs_2/src/shared/utils/storage/external/hive_repository.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:flutter/services.dart';
 import 'package:share/share.dart';
@@ -14,10 +9,6 @@ import 'infra/repositories/feed_repository_impl.dart';
 
 class FeedController {
   final loadfeedUsecase = LoadFeedUsecase(FeedRepositoryImpl(DogsApiImpl()));
-
-  final urlToFileUsecase = URLToFileUsecase(
-      params: URLToFileParams(''),
-      repository: URLToFileRepositoryImpl(dataSource: ImageDownloaderImpl()));
 
   List<String> dogsPhotosList = [];
   final snackBarFavorited = SnackBar(
@@ -39,15 +30,6 @@ class FeedController {
       ItemPositionsListener.create();
 
   int dogsListIndex = 0;
-
-  void saveImage(String url, BuildContext context) async {
-    try {
-      StorageController(HiveRepository()).repository.save(url);
-      ScaffoldMessenger.of(context).showSnackBar(snackBarFavorited);
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(snackBarError);
-    }
-  }
 
   void shareImage(String url, BuildContext context) async {
     try {
